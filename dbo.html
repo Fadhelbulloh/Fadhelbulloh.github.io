@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DBO Order Service · Fadhel Hasbullah</title>
+  <meta name="description" content="DBO Order Service: moving order reads to MySQL, tuning latency and memory, and decommissioning OpenSearch. Case study by Fadhel Hasbullah.">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+  <script src="js/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-head wrap">
+    <a class="brand" href="index.html">Fadhel Hasbullah</a>
+    <nav aria-label="Main">
+      <a href="openxense.html">OpenXense</a>
+      <a href="index.html#ai">AI practice</a>
+      <a href="index.html#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <a class="back" href="index.html#work">← Engineering experience</a>
+    <div class="detail-head">
+      <div>
+        <h1>DBO<br>Order Service</h1>
+        <p class="role">Senior Backend Engineer · Section Head · 2024–now</p>
+      </div>
+      <p>DBO is a B2B construction-materials marketplace. I moved its order reads to MySQL, tuned latency and memory, and decommissioned OpenSearch.</p>
+    </div>
+
+    <div class="results">
+      <div><strong>−55.3%</strong><span>Order-list median latency · controlled A/B</span></div>
+      <div><strong>−38%</strong><span>Peak memory (RSS) · bounded 5-user load test</span></div>
+      <div><strong>One datastore</strong><span>OpenSearch decommissioned</span></div>
+    </div>
+
+    <div class="detail-grid">
+      <div>
+        <figure class="graph" aria-label="Simplified order read path">
+          <p class="graph-label">Simplified read path</p>
+          <div class="node">REST + gRPC clients</div>
+          <p class="down" aria-hidden="true">↓</p>
+          <div class="node key">Go order service<small>Indexed IDs · batched reads</small></div>
+          <p class="down" aria-hidden="true">↓</p>
+          <div class="flow">
+            <div class="node">MySQL<small>Order data</small></div>
+            <div class="node">Other services<small>Metadata</small></div>
+            <div class="node gone">OpenSearch<small>Decommissioned</small></div>
+          </div>
+        </figure>
+        <figure class="chart" aria-label="Order-list median latency: 1,080 ms before, 482.5 ms after">
+          <h3>Order-list median latency</h3>
+          <div class="bar" aria-hidden="true"></div>
+          <span>Before · 1,080 ms</span>
+          <div class="bar after" style="width:44.68%" aria-hidden="true"></div>
+          <span>After · 482.5 ms</span>
+          <figcaption class="caption">Controlled A/B: 8 interleaved rounds, 80 calls per version, median of round medians. Not a production-wide latency claim.</figcaption>
+        </figure>
+      </div>
+      <div>
+        <div class="decision">
+          <h3>Performance tuning</h3>
+          <p>Indexed MySQL reads, batched hydration and bounded downstream calls. Checked latency, memory and cancellation behaviour across REST and gRPC.</p>
+        </div>
+        <div class="decision">
+          <h3>OpenSearch decommissioned</h3>
+          <p>Migrated read paths to MySQL first, then removed search projections and client dependencies, then decommissioned the OpenSearch infrastructure. Rollback stayed possible at each stage.</p>
+        </div>
+        <div class="decision">
+          <h3>Data integrity</h3>
+          <p>Validated order-closing jobs across transactional records, history and downstream processing, including excluded-account handling.</p>
+        </div>
+        <details>
+          <summary>Measurement scope</summary>
+          <p>The target endpoint improved in all 8 rounds. Eleven other endpoints showed no systematic regression; occasional latency outliers remained. Peak memory comes from a bounded five-user test and includes profiling overhead. These numbers describe the experiments, not the whole production system.</p>
+        </details>
+      </div>
+    </div>
+    <p class="caption">Stack: Go, MySQL, Kafka, gRPC, REST, Kubernetes.</p>
+  </main>
+
+  <footer id="contact" class="contact wrap">
+    <div>
+      <h2>Let's talk.</h2>
+      <p class="muted">Jakarta · Open to remote work and relocation</p>
+    </div>
+    <ul>
+      <li><a href="mailto:fadhelhasbullah.fh@gmail.com">Email</a></li>
+      <li><a href="https://linkedin.com/in/fadhel-hasbullah">LinkedIn</a></li>
+      <li><a href="https://github.com/Fadhelbulloh">GitHub</a></li>
+    </ul>
+  </footer>
+</body>
+</html>

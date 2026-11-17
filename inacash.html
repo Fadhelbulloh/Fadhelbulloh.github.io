@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>INACASH payments · Fadhel Hasbullah</title>
+  <meta name="description" content="INACASH fintech: payment services for QR-code payments, virtual accounts, e-money and bill payments. Case study by Fadhel Hasbullah.">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+  <script src="js/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-head wrap">
+    <a class="brand" href="index.html">Fadhel Hasbullah</a>
+    <nav aria-label="Main">
+      <a href="openxense.html">OpenXense</a>
+      <a href="index.html#ai">AI practice</a>
+      <a href="index.html#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <a class="back" href="index.html#work">← Engineering experience</a>
+    <div class="detail-head">
+      <div>
+        <h1>INACASH</h1>
+        <p class="role">Backend Engineer · Fintech · 2023–2024</p>
+      </div>
+      <p>Payment services across five channels in production, where every transaction has to add up.</p>
+    </div>
+
+    <div class="results">
+      <div><strong>2 hours</strong><span>To restore a production Redis outage</span></div>
+      <div><strong>Zero data loss</strong><span>During that incident</span></div>
+      <div><strong>5 channels</strong><span>One module per channel</span></div>
+    </div>
+
+    <figure class="graph" aria-label="INACASH payment flow">
+      <p class="graph-label">Payment flow</p>
+      <div class="node">Channels<small>QR-code payments · virtual accounts · bill payments</small></div>
+      <p class="down" aria-hidden="true">↓ one module per channel</p>
+      <div class="node key">Go services<small>ACID transactions</small></div>
+      <p class="down" aria-hidden="true">↓</p>
+      <div class="flow">
+        <div class="node">PostgreSQL<small>Ledger</small></div>
+        <div class="node">Redis<small>Hot-path cache</small></div>
+        <div class="node">Google Pub/Sub<small>Events</small></div>
+      </div>
+    </figure>
+
+    <div class="detail-grid section">
+      <div class="decision">
+        <h3>Incident recovery</h3>
+        <p>A production Redis outage hit partner integrations. I restored service within 2 hours with zero data loss.</p>
+      </div>
+      <div>
+        <div class="decision">
+          <h3>Consistency</h3>
+          <p>High-availability services with strict ACID guarantees on transaction data.</p>
+        </div>
+        <div class="decision">
+          <h3>Latency</h3>
+          <p>A Redis caching layer on the high-frequency transaction pipelines.</p>
+        </div>
+      </div>
+    </div>
+    <p class="caption">Stack: Go, PostgreSQL, Redis, Google Pub/Sub, Docker, GCP.</p>
+  </main>
+
+  <footer id="contact" class="contact wrap">
+    <div>
+      <h2>Let's talk.</h2>
+      <p class="muted">Jakarta · Open to remote work and relocation</p>
+    </div>
+    <ul>
+      <li><a href="mailto:fadhelhasbullah.fh@gmail.com">Email</a></li>
+      <li><a href="https://linkedin.com/in/fadhel-hasbullah">LinkedIn</a></li>
+      <li><a href="https://github.com/Fadhelbulloh">GitHub</a></li>
+    </ul>
+  </footer>
+</body>
+</html>
