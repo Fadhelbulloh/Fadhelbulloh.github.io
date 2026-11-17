@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenXense, AI gateway and SaaS billing · Fadhel Hasbullah</title>
+  <meta name="description" content="OpenXense: one account for many AI providers, with chat for people and an API for developers. Co-founded and built from zero by Fadhel Hasbullah.">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+  <script src="js/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-head wrap">
+    <a class="brand" href="index.html">Fadhel Hasbullah</a>
+    <nav aria-label="Main">
+      <a href="openxense.html" aria-current="page">OpenXense</a>
+      <a href="index.html#ai">AI practice</a>
+      <a href="index.html#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <a class="back" href="index.html">← All work</a>
+    <div class="detail-head">
+      <div>
+        <h1>OpenXense</h1>
+        <p class="role">Co-founder &amp; co-owner · Built from zero · 2025–now</p>
+        <a class="action" href="https://openxense.com">Visit openxense.com ↗</a>
+      </div>
+      <p>One product for AI chat and developer APIs. I built the gateway, the billing engine and the SaaS experience, and I operate its infrastructure.</p>
+    </div>
+
+    <figure class="graph" aria-label="OpenXense request flow" data-links="client,gateway;gateway,litellm;litellm,providers;gateway,billing,both">
+      <p class="graph-label">Product architecture · request flow</p>
+      <div class="flow">
+        <div class="node" id="client">Chat + API<small>Users and developers</small></div>
+        <span class="connector" aria-hidden="true">→</span>
+        <div class="node key" id="gateway">Go gateway<small>Auth · keys · quota</small></div>
+        <span class="connector" aria-hidden="true">→</span>
+        <div class="node" id="litellm">LiteLLM<small>Routing · max_budget</small></div>
+        <span class="connector" aria-hidden="true">→</span>
+        <div class="node" id="providers">AI providers</div>
+      </div>
+      <div class="branch under-key">
+        <p class="down"><span class="connector" aria-hidden="true">↕</span> usage</p>
+        <div class="node" id="billing">Billing<small>QR-code payments</small></div>
+      </div>
+      <figcaption class="caption">Built: gateway, billing, dashboard, chat. Used: LiteLLM, model providers.</figcaption>
+    </figure>
+
+    <div class="detail-grid section">
+      <div class="decision">
+        <h3>The problem</h3>
+        <p>Paying every AI provider separately adds up. People want chat; developers want an API. Both want one bill.</p>
+      </div>
+      <div>
+        <div class="decision">
+          <h3>Why our own gateway</h3>
+          <p>We could have exposed LiteLLM directly. A Go gateway in front of it keeps authentication, keys, quotas and traffic tracking in code we own.</p>
+        </div>
+        <div class="decision">
+          <h3>Prepaid billing</h3>
+          <p>Quota is denominated in USD, checkout is in IDR with QR-code payments, and margins are enforced through LiteLLM's max_budget per user.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="subhead">See the product</h2>
+    <ul class="shots">
+      <li><a href="images/openxense-landing.jpg"><img src="images/openxense-landing.jpg" width="1440" height="900" loading="lazy" alt="OpenXense landing page: one chat for all your favourite AI models, with an example conversation"><span>Chat &amp; landing</span></a></li>
+      <li><a href="images/openxense-developers.jpg"><img src="images/openxense-developers.jpg" width="1440" height="900" loading="lazy" alt="OpenXense developer page: OpenAI-compatible API, one endpoint for every supported model"><span>Developer API</span></a></li>
+      <li><a href="images/openxense-pricing.jpg"><img src="images/openxense-pricing.jpg" width="1440" height="900" loading="lazy" alt="OpenXense pricing page: prepaid plans, credits shared between chat and API"><span>Pricing &amp; plans</span></a></li>
+      <li><a href="images/openxense-models.jpg"><img src="images/openxense-models.jpg" width="1440" height="900" loading="lazy" alt="OpenXense models page: models from several providers grouped by task, with model ID, context size and speed"><span>Model catalogue</span></a></li>
+    </ul>
+    <p class="caption">Stack: Go, LiteLLM, PostgreSQL, Redis, gRPC, Docker, CI/CD.</p>
+  </main>
+
+  <footer id="contact" class="contact wrap">
+    <div>
+      <h2>Let's talk.</h2>
+      <p class="muted">Jakarta · Open to remote work and relocation</p>
+    </div>
+    <ul>
+      <li><a href="mailto:fadhelhasbullah.fh@gmail.com">Email</a></li>
+      <li><a href="https://linkedin.com/in/fadhel-hasbullah">LinkedIn</a></li>
+      <li><a href="https://github.com/Fadhelbulloh">GitHub</a></li>
+    </ul>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Payment System · Fadhel Hasbullah</title>
+  <meta name="description" content="Core backend for a payment provider licensed by Bank Indonesia: transaction logging, audit trail and CI/CD. Case study by Fadhel Hasbullah.">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+  <script src="js/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-head wrap">
+    <a class="brand" href="index.html">Fadhel Hasbullah</a>
+    <nav aria-label="Main">
+      <a href="openxense.html">OpenXense</a>
+      <a href="index.html#ai">AI practice</a>
+      <a href="index.html#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <a class="back" href="index.html#work">← Engineering experience</a>
+    <div class="detail-head">
+      <div>
+        <h1>Payment System</h1>
+        <p class="role">Backend &amp; DevOps · Freelance · 2025–2026</p>
+      </div>
+      <p>The core backend for a payment service provider licensed by Bank Indonesia. It had to be right the first time.</p>
+    </div>
+
+    <div class="results">
+      <div><strong>~80%</strong><span>Shorter deployment lead time</span></div>
+      <div><strong>Audit trail</strong><span>Transaction logging and operational safeguards</span></div>
+      <div><strong>Isolated</strong><span>Partner integrations kept outside the core</span></div>
+    </div>
+
+    <figure class="graph" aria-label="Payment system boundaries">
+      <p class="graph-label">System boundaries</p>
+      <div class="flow">
+        <div class="node">Banks + partners</div>
+        <span class="connector" aria-hidden="true">→</span>
+        <div class="node">Adapters<small>One per partner</small></div>
+        <span class="connector" aria-hidden="true">→</span>
+        <div class="node key">Go core<small>Payment logic</small></div>
+        <span class="connector" aria-hidden="true">→</span>
+        <div class="node">PostgreSQL<small>Audit trail</small></div>
+      </div>
+      <p class="down">↓ deploy</p>
+      <div class="branch"><div class="node">GitHub Actions<small>Docker · nginx</small></div></div>
+    </figure>
+
+    <div class="detail-grid section">
+      <div class="decision">
+        <h3>Clean boundaries</h3>
+        <p>Business logic is separated from every external integration, so a partner change never reaches the core.</p>
+      </div>
+      <div class="decision">
+        <h3>Release pipeline</h3>
+        <p>CI/CD with GitHub Actions and GHCR replaced manual releases and cut deployment lead time by about 80%.</p>
+      </div>
+    </div>
+    <p class="caption">Stack: Go, PostgreSQL, Docker, nginx, GitHub Actions, GHCR.</p>
+  </main>
+
+  <footer id="contact" class="contact wrap">
+    <div>
+      <h2>Let's talk.</h2>
+      <p class="muted">Jakarta · Open to remote work and relocation</p>
+    </div>
+    <ul>
+      <li><a href="mailto:fadhelhasbullah.fh@gmail.com">Email</a></li>
+      <li><a href="https://linkedin.com/in/fadhel-hasbullah">LinkedIn</a></li>
+      <li><a href="https://github.com/Fadhelbulloh">GitHub</a></li>
+    </ul>
+  </footer>
+</body>
+</html>
