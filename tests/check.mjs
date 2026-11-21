@@ -30,6 +30,7 @@ for (const page of PAGES) {
     assert.match(html, /<title>[^<]{5,}<\/title>/, 'title');
     assert.match(html, /<meta name="description" content="[^"]{20,}"/, 'description');
     assert.ok(html.includes('href="css/site.css"') && html.includes('src="js/site.js"'), 'shared css/js');
+    assert.ok(html.includes('<link rel="icon" href="favicon.svg"'), 'favicon');
   });
   check(`${page} local refs resolve`, () => {
     for (const [, ref] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
