@@ -3,137 +3,201 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fadhel Hasbullah, backend engineer and AI product co-founder</title>
-  <meta name="description" content="Go backend engineer in Jakarta and co-founder of OpenXense. AI-assisted engineering, payment systems and order services. Open to remote work and relocation.">
+  <meta name="theme-color" content="#dfdedb">
+  <title>Fadhel Hasbullah — Senior backend engineer and AI product co-founder</title>
+  <meta name="description" content="Senior Go backend engineer in Jakarta and co-founder of OpenXense. Product-oriented systems engineering, disciplined AI workflows, payment and order infrastructure. Open to remote work and relocation.">
   <script>document.documentElement.classList.add('js')</script>
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/site.css">
   <script src="js/site.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site-head wrap">
-    <a class="brand" href="index.html">Fadhel Hasbullah</a>
-    <nav aria-label="Main">
-      <a href="openxense.html">OpenXense</a>
-      <a href="#ai">AI practice</a>
-      <a href="#work">Work</a>
-      <a href="#contact">Contact</a>
-    </nav>
+
+  <header class="site-head">
+    <div class="head-inner wrap">
+      <a class="brand" href="index.html" translate="no">Fadhel Hasbullah</a>
+      <nav aria-label="Main">
+        <a href="openxense.html" translate="no">OpenXense</a>
+        <a href="#ai">AI practice</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
   <main id="main">
-    <section class="intro wrap">
-      <div>
-        <h1>Backend engineer.<br>AI product co-founder.</h1>
-        <p>I'm Fadhel. I co-founded OpenXense and built it from zero. By day I work on the order and payment systems businesses depend on.</p>
-        <a class="action" href="openxense.html">Explore OpenXense</a>
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <h1 id="hero-title">
+        <span class="line"><span data-line style="--i:0">Backend systems.</span></span>
+        <span class="line line-secondary"><span data-line style="--i:1">Shipped AI product.</span></span>
+      </h1>
+      <div class="hero-foot">
+        <p class="hero-lead" data-rise style="--i:0">I'm Fadhel. Co-founder of <span translate="no">OpenXense</span>, built from zero. By day I run Go order and payment systems in production.</p>
+        <div class="hero-aside" data-rise style="--i:1">
+          <p class="hero-meta">Senior Go backend engineering since 2020. Jakarta · Open to remote work and relocation.</p>
+          <a class="action" href="openxense.html">Explore OpenXense</a>
+        </div>
       </div>
-      <aside>
-        <b>Building products. Running the systems.</b>
-        Go backend engineering since 2020.<br>Jakarta · Open to remote work and relocation.
-      </aside>
     </section>
 
-    <section class="wrap" aria-labelledby="feature-title">
-      <div class="feature">
-        <div>
-          <h2 id="feature-title">OpenXense</h2>
-          <p class="role">Co-founder &amp; co-owner · Built from zero</p>
-          <p>Many AI providers, one account. Chat for people, an API for developers. My own Go gateway and billing layer sit behind both.</p>
-          <a class="textlink" href="openxense.html">Inside the product →</a>
-        </div>
-        <figure class="graph" aria-label="OpenXense simplified request flow">
-          <p class="graph-label">Simplified request flow</p>
-          <div class="flow">
-            <div class="node">Chat / API<small>People and developers</small></div>
-            <span class="connector" aria-hidden="true">→</span>
-            <div class="node key">Go gateway<small>Auth · quota · control</small></div>
-            <span class="connector" aria-hidden="true">→</span>
-            <div class="node">LiteLLM<small>Model routing</small></div>
+    <section class="chapter chapter-tint" aria-labelledby="feature-title">
+      <div class="wrap ox-intro">
+        <div class="ox-copy" data-reveal style="--d:0">
+          <h2 id="feature-title" translate="no">OpenXense</h2>
+          <p class="ox-role">Co-founder &amp; co-owner · Built from zero · 2025–now</p>
+          <p>Many AI providers, one account. Chat for people, an API for developers. My own Go gateway and prepaid billing layer sit behind both.</p>
+          <div class="ox-links">
+            <a class="action" href="openxense.html">Inside the product</a>
+            <a class="textlink" href="https://openxense.com">Visit openxense.com ↗</a>
           </div>
-          <div class="branch">
-            <p class="down" aria-hidden="true">↕</p>
-            <div class="node">Billing &amp; usage<small>PostgreSQL · Redis · QR-code payments</small></div>
+        </div>
+
+        <figure class="graph" data-reveal style="--d:1" aria-label="OpenXense simplified request flow" data-links="ox-client,ox-gateway;ox-gateway,ox-litellm;ox-gateway,ox-billing,both">
+          <div class="graph-head">
+            <p class="graph-label">Simplified request flow</p>
+          </div>
+          <div class="graph-canvas">
+            <div class="flow">
+              <div class="node" id="ox-client">Chat / API<small>People and developers</small></div>
+              <span class="connector" aria-hidden="true">→</span>
+              <div class="node key" id="ox-gateway">Go gateway<small>Auth · quota · control</small></div>
+              <span class="connector" aria-hidden="true">→</span>
+              <div class="node" id="ox-litellm">LiteLLM<small>Model routing</small></div>
+            </div>
+            <div class="branch under-col-2">
+              <p class="down"><span class="connector" aria-hidden="true">↕</span> usage &amp; quota</p>
+              <div class="node" id="ox-billing">Billing &amp; usage<small>PostgreSQL · Redis · QR-code payments</small></div>
+            </div>
+          </div>
+          <div class="graph-bar">
+            <div class="graph-legend">
+              <span class="leg-auto">Automated runtime</span>
+            </div>
           </div>
           <figcaption class="caption">Built: gateway, billing, product. Used: LiteLLM.</figcaption>
         </figure>
       </div>
+
+      <div class="panel-band" aria-label="OpenXense product interface previews">
+        <a class="panel-slice" href="openxense.html" data-reveal style="--d:0">
+          <img src="images/openxense-landing.jpg" width="1440" height="900" loading="lazy" alt="OpenXense landing page: one chat for all your favourite AI models, with an example conversation">
+          <span class="panel-caption">Chat &amp; landing</span>
+        </a>
+        <a class="panel-slice" href="openxense.html" data-reveal style="--d:1">
+          <img src="images/openxense-developers.jpg" width="1440" height="900" loading="lazy" alt="OpenXense developer page: OpenAI-compatible API, one endpoint for every supported model">
+          <span class="panel-caption">Developer API</span>
+        </a>
+        <a class="panel-slice" href="openxense.html" data-reveal style="--d:2">
+          <img src="images/openxense-pricing.jpg" width="1440" height="900" loading="lazy" alt="OpenXense pricing page: prepaid plans, credits shared between chat and API">
+          <span class="panel-caption">Pricing &amp; plans</span>
+        </a>
+        <a class="panel-slice" href="openxense.html" data-reveal style="--d:3">
+          <img src="images/openxense-models.jpg" width="1440" height="900" loading="lazy" alt="OpenXense models page: models from several providers grouped by task, with model ID, context size and speed">
+          <span class="panel-caption">Model catalogue</span>
+        </a>
+      </div>
+      <p class="band-note">Production screens from openxense.com. Select any panel to inspect full architecture and screenshots.</p>
     </section>
 
-    <section id="ai" class="section wrap" aria-labelledby="ai-title">
-      <div class="section-top">
-        <h2 id="ai-title">AI is part of<br>how I ship.</h2>
-        <p>Tools I use, infrastructure I run, orchestration I built. Select a component to see its role.</p>
+    <section id="ai" class="chapter wrap" aria-labelledby="ai-title">
+      <div class="sec-head" data-reveal style="--d:0">
+        <h2 id="ai-title">AI is part of how I ship.</h2>
+        <p>Tools I use, infrastructure I self-host, orchestration I built. Select a component to inspect its exact role and boundaries.</p>
       </div>
-      <div class="ai-grid">
+
+      <div class="ai-grid" data-ui>
         <ul class="tools">
-          <li class="tool"><button type="button">OpenCode<small>Used · development</small></button>
+          <li class="tool" data-reveal style="--d:0"><button type="button">OpenCode<small>Used · development</small></button>
             <p>My development workspace. Agent rules set access boundaries, such as read-only production data; skills organise planning, implementation and review.</p></li>
-          <li class="tool" data-default><button type="button">opencode-delegate<small>Built · open source</small></button>
+          <li class="tool" data-default data-reveal style="--d:1"><button type="button">opencode-delegate<small>Built · open source</small></button>
             <p>I built the handoff between a planner session and worker sessions in OpenCode. Tasks out, results back, with message and review budgets enforced by a script. <a href="https://github.com/Fadhelbulloh/opencode-delegate">View the source ↗</a></p></li>
-          <li class="tool"><button type="button">Hermes<small>Used · Telegram</small></button>
+          <li class="tool" data-reveal style="--d:2"><button type="button">Hermes<small>Used · Telegram</small></button>
             <p>A personal assistant I operate through Telegram, with scheduled jobs for ongoing operations.</p></li>
-          <li class="tool wide"><button type="button">9Router<small>Self-hosted gateway for my AI tools</small></button>
-            <p>Open source by decolua, self-hosted by me on a separate VPS. All my AI tool traffic goes through it. <a href="https://github.com/decolua/9router">Project page ↗</a></p></li>
-          <li class="tool"><button type="button">Content Factory<small>Built &amp; operated</small></button>
+          <li class="tool" data-reveal style="--d:3"><button type="button">Content Factory<small>Built &amp; operated</small></button>
             <p>Scheduled content publishing to two Threads accounts, with Telegram notifications. <a href="automation.html">See the flow →</a></p></li>
-          <li class="tool"><button type="button">n8n + cron<small>Workflow automation</small></button>
+          <li class="tool wide" data-reveal style="--d:4"><button type="button">9Router<small>Self-hosted gateway for my AI tools</small></button>
+            <p>Open source by decolua, self-hosted by me on a separate VPS. All my AI tool traffic goes through it. <a href="https://github.com/decolua/9router">Project page ↗</a></p></li>
+          <li class="tool" data-reveal style="--d:5"><button type="button">n8n + cron<small>Workflow automation</small></button>
             <p>Workflow execution and scheduled jobs: publishing, token refresh, backups and health checks.</p></li>
-          <li class="tool"><button type="button">offerbound<small>Built · open source</small></button>
-            <p>A local job portal: fetches openings, scores them against my CV with my own LLM key, checks visa sponsor registers, drafts a tailored CV. I review and send manually. <a href="https://github.com/Fadhelbulloh/offerbound">View the source ↗</a> · <a href="automation.html">See the flow →</a></p></li>
+          <li class="tool" data-reveal style="--d:6"><button type="button">offerbound<small>Built · open source</small></button>
+            <p>A local job portal: fetches openings, scores them against my CV with my own LLM key, checks visa sponsor registers, drafts a tailored CV. I review and send manually. <a href="https://github.com/Fadhelbulloh/offerbound">View the source ↗</a> <a href="automation.html">See the flow →</a></p></li>
         </ul>
-        <div class="tool-detail" aria-live="polite"></div>
+
+        <div class="tool-stage" data-reveal style="--d:2">
+          <div class="tool-detail" aria-live="polite"></div>
+        </div>
       </div>
-      <a class="action" href="automation.html">Explore my automation ecosystem →</a>
+
+      <div class="ai-foot" data-reveal style="--d:2">
+        <a class="action" href="automation.html">Explore my automation ecosystem</a>
+      </div>
     </section>
 
-    <section id="work" class="section wrap" aria-labelledby="work-title">
-      <div class="section-top">
-        <h2 id="work-title">Engineering experience</h2>
-        <p>Production systems. Concrete constraints. Measured results.</p>
+    <section id="work" class="chapter chapter-tint" aria-labelledby="work-title">
+      <div class="wrap">
+        <div class="sec-head" data-reveal style="--d:0">
+          <h2 id="work-title">Engineering experience</h2>
+          <p>Production systems. Concrete constraints. Measured results.</p>
+        </div>
+
+        <div class="ledger">
+          <a class="work-row" href="dbo.html" data-reveal style="--d:0">
+            <div>
+              <h3>DBO · Order Service</h3>
+              <small class="num">Senior Backend Engineer · Section Head · 2024–now</small>
+            </div>
+            <p>MySQL read paths, performance tuning, OpenSearch decommissioning.</p>
+            <span class="metric">−55.3% median latency →</span>
+          </a>
+          <a class="work-row" href="payment-system.html" data-reveal style="--d:1">
+            <div>
+              <h3>Payment System</h3>
+              <small class="num">Backend &amp; DevOps · Freelance · 2025–2026</small>
+            </div>
+            <p>Core for a payment provider licensed by Bank Indonesia.</p>
+            <span class="metric">~80% faster releases →</span>
+          </a>
+          <a class="work-row" href="inacash.html" data-reveal style="--d:2">
+            <div>
+              <h3>INACASH</h3>
+              <small class="num">Backend Engineer · 2023–2024</small>
+            </div>
+            <p>QR-code payments, virtual accounts and bill payments.</p>
+            <span class="metric">2-hour recovery →</span>
+          </a>
+        </div>
+
+        <details data-reveal style="--d:3">
+          <summary>More work: Astro, Pelukdiri, Pertamina, eBdesk</summary>
+          <ul class="more">
+            <li><b>Astro</b> · Backend Developer at Rebelworks, 2022–2023. Order and delivery APIs for a quick-commerce platform with about a million users.</li>
+            <li><b>Pelukdiri</b> · Backend &amp; DevOps, freelance, 2025–2026. Consultation booking and payment flows with failure recovery.</li>
+            <li><b>Pertamina</b> · Backend Engineer, freelance, 2024–2025. Sponsorship approval system with OTP admin login and encrypted data.</li>
+            <li><b>eBdesk</b> · Backend Developer, 2020–2022. Services for big-data and sentiment-analysis platforms.</li>
+          </ul>
+        </details>
       </div>
-      <a class="work-row" href="dbo.html">
-        <div><h3>DBO · Order Service</h3><small>Senior Backend Engineer · Section Head · 2024–now</small></div>
-        <p>MySQL read paths, performance tuning, OpenSearch decommissioning.</p>
-        <span class="metric">−55.3% median latency →</span>
-      </a>
-      <a class="work-row" href="payment-system.html">
-        <div><h3>Payment System</h3><small>Backend &amp; DevOps · Freelance · 2025–2026</small></div>
-        <p>Core for a payment provider licensed by Bank Indonesia.</p>
-        <span class="metric">~80% faster releases →</span>
-      </a>
-      <a class="work-row" href="inacash.html">
-        <div><h3>INACASH</h3><small>Backend Engineer · 2023–2024</small></div>
-        <p>QR-code payments, virtual accounts and bill payments.</p>
-        <span class="metric">2-hour recovery →</span>
-      </a>
-      <details>
-        <summary>More work: Astro, Pelukdiri, Pertamina, eBdesk</summary>
-        <ul class="more">
-          <li><b>Astro</b> · Backend Developer at Rebelworks, 2022–2023. Order and delivery APIs for a quick-commerce platform with about a million users.</li>
-          <li><b>Pelukdiri</b> · Backend &amp; DevOps, freelance, 2025–2026. Consultation booking and payment flows with failure recovery.</li>
-          <li><b>Pertamina</b> · Backend Engineer, freelance, 2024–2025. Sponsorship approval system with OTP admin login and encrypted data.</li>
-          <li><b>eBdesk</b> · Backend Developer, 2020–2022. Services for big-data and sentiment-analysis platforms.</li>
-        </ul>
-      </details>
     </section>
   </main>
 
-  <footer id="contact" class="contact wrap">
-    <div>
-      <h2>Let's talk.</h2>
-      <p class="muted">Jakarta · Open to remote work and relocation</p>
+  <footer id="contact" class="contact-chapter">
+    <div class="wrap">
+      <p class="contact-lead" data-reveal style="--d:0">Open to senior backend engineering, AI product roles, remote work and relocation.</p>
+      <a class="email-display" href="mailto:fadhelhasbullah.fh@gmail.com" data-reveal style="--d:1">fadhelhasbullah.fh@<wbr>gmail.com</a>
+      <div class="contact-bar" data-reveal style="--d:2">
+        <p class="contact-meta">Fadhel Hasbullah · Jakarta · Open to remote work and relocation</p>
+        <ul class="contact-links">
+          <li><a href="mailto:fadhelhasbullah.fh@gmail.com">Email</a></li>
+          <li><a href="https://linkedin.com/in/fadhel-hasbullah">LinkedIn</a></li>
+          <li><a href="https://github.com/Fadhelbulloh">GitHub</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1OdFvGomxROQ6NlV75QMc7W3Kh3DqMgvS">CV (Google Drive)</a></li>
+        </ul>
+      </div>
     </div>
-    <ul>
-      <li><a href="mailto:fadhelhasbullah.fh@gmail.com">Email</a></li>
-      <li><a href="https://linkedin.com/in/fadhel-hasbullah">LinkedIn</a></li>
-      <li><a href="https://github.com/Fadhelbulloh">GitHub</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1OdFvGomxROQ6NlV75QMc7W3Kh3DqMgvS">CV (Google Drive)</a></li>
-    </ul>
   </footer>
 </body>
 </html>

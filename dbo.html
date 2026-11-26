@@ -3,99 +3,170 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#dfdedb">
   <title>DBO Order Service · Fadhel Hasbullah</title>
   <meta name="description" content="DBO Order Service: moving order reads to MySQL, tuning latency and memory, and decommissioning OpenSearch. Case study by Fadhel Hasbullah.">
   <script>document.documentElement.classList.add('js')</script>
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/site.css">
   <script src="js/site.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site-head wrap">
-    <a class="brand" href="index.html">Fadhel Hasbullah</a>
-    <nav aria-label="Main">
-      <a href="openxense.html">OpenXense</a>
-      <a href="index.html#ai">AI practice</a>
-      <a href="index.html#work">Work</a>
-      <a href="#contact">Contact</a>
-    </nav>
+
+  <header class="site-head">
+    <div class="head-inner wrap">
+      <a class="brand" href="index.html" translate="no">Fadhel Hasbullah</a>
+      <nav aria-label="Main">
+        <a href="openxense.html" translate="no">OpenXense</a>
+        <a href="index.html#ai">AI practice</a>
+        <a href="index.html#work" aria-current="page">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <main id="main" class="wrap">
-    <a class="back" href="index.html#work">← Engineering experience</a>
+  <main id="main" class="wrap detail-main">
     <div class="detail-head">
-      <div>
+      <div data-rise style="--i:0">
         <h1>DBO<br>Order Service</h1>
-        <p class="role">Senior Backend Engineer · Section Head · 2024–now</p>
+        <p class="role num">Senior Backend Engineer · Section Head · 2024–now</p>
+        <a class="back" href="index.html#work">← Engineering experience</a>
       </div>
-      <p>DBO is a B2B construction-materials marketplace. I moved its order reads to MySQL, tuned latency and memory, and decommissioned OpenSearch.</p>
+      <p data-rise style="--i:1">DBO is a B2B construction-materials marketplace. I moved its order reads to MySQL, tuned latency and memory, and decommissioned OpenSearch.</p>
     </div>
 
     <div class="results">
-      <div><strong>−55.3%</strong><span>Order-list median latency · controlled A/B</span></div>
-      <div><strong>−38%</strong><span>Peak memory (RSS) · bounded 5-user load test</span></div>
-      <div><strong>One datastore</strong><span>OpenSearch decommissioned</span></div>
+      <div data-reveal style="--d:0"><strong>−55.3%</strong><span>Order-list median latency · controlled A/B</span></div>
+      <div data-reveal style="--d:1"><strong>−38%</strong><span>Peak memory (RSS) · bounded 5-user load test</span></div>
+      <div data-reveal style="--d:2"><strong>One datastore</strong><span>OpenSearch decommissioned</span></div>
     </div>
 
     <div class="detail-grid">
       <div>
-        <figure class="graph" aria-label="Simplified order read path">
-          <p class="graph-label">Simplified read path</p>
-          <div class="node">REST + gRPC clients</div>
-          <p class="down" aria-hidden="true">↓</p>
-          <div class="node key">Go order service<small>Indexed IDs · batched reads</small></div>
-          <p class="down" aria-hidden="true">↓</p>
-          <div class="flow">
-            <div class="node">MySQL<small>Order data</small></div>
-            <div class="node">Other services<small>Metadata</small></div>
-            <div class="node gone">OpenSearch<small>Decommissioned</small></div>
+        <figure class="graph" data-reveal style="--d:0" aria-label="Simplified order read path" data-links="dbo-clients,dbo-service;dbo-service,dbo-mysql;dbo-service,dbo-meta;dbo-service,dbo-os,retired">
+          <div class="graph-head">
+            <p class="graph-label">Simplified read path</p>
+          </div>
+          <div class="graph-canvas">
+            <div class="flow flow-1">
+              <div class="node" id="dbo-clients">REST + gRPC clients<small>Order queries</small></div>
+            </div>
+            <p class="down"><span class="connector" aria-hidden="true">↓</span> live read traffic</p>
+            <div class="flow flow-1">
+              <div class="node key" id="dbo-service">Go order service<small>Indexed IDs · batched reads</small></div>
+            </div>
+            <p class="down"><span class="connector" aria-hidden="true">↓</span> active datastores vs removed</p>
+            <div class="flow">
+              <div class="node" id="dbo-mysql">MySQL<small>Order data</small></div>
+              <div class="node" id="dbo-meta">Other services<small>Metadata</small></div>
+              <div class="node gone" id="dbo-os"><span class="node-name">OpenSearch</span><small>Decommissioned</small></div>
+            </div>
+          </div>
+          <div class="graph-bar">
+            <div class="graph-legend">
+              <span class="leg-auto">Automated · live read path</span>
+              <span class="leg-retired">Decommissioned (static)</span>
+            </div>
           </div>
         </figure>
-        <figure class="chart" aria-label="Order-list median latency: 1,080 ms before, 482.5 ms after">
+
+        <figure class="chart" data-reveal style="--d:1" aria-label="Order-list median latency: 1,080 ms before, 482.5 ms after">
           <h3>Order-list median latency</h3>
-          <div class="bar" aria-hidden="true"></div>
-          <span>Before · 1,080 ms</span>
-          <div class="bar after" style="width:44.68%" aria-hidden="true"></div>
-          <span>After · 482.5 ms</span>
+          <div class="bar-row">
+            <div class="bar" aria-hidden="true"></div>
+            <span>Before · 1,080 ms</span>
+          </div>
+          <div class="bar-row">
+            <div class="bar after" style="width:44.68%" aria-hidden="true"></div>
+            <span>After · 482.5 ms</span>
+          </div>
           <figcaption class="caption">Controlled A/B: 8 interleaved rounds, 80 calls per version, median of round medians. Not a production-wide latency claim.</figcaption>
         </figure>
       </div>
+
       <div>
-        <div class="decision">
+        <div class="decision" data-reveal style="--d:0">
           <h3>Performance tuning</h3>
           <p>Indexed MySQL reads, batched hydration and bounded downstream calls. Checked latency, memory and cancellation behaviour across REST and gRPC.</p>
         </div>
-        <div class="decision">
+        <div class="decision" data-reveal style="--d:1">
           <h3>OpenSearch decommissioned</h3>
           <p>Migrated read paths to MySQL first, then removed search projections and client dependencies, then decommissioned the OpenSearch infrastructure. Rollback stayed possible at each stage.</p>
         </div>
-        <div class="decision">
+        <div class="decision" data-reveal style="--d:2">
           <h3>Data integrity</h3>
           <p>Validated order-closing jobs across transactional records, history and downstream processing, including excluded-account handling.</p>
         </div>
-        <details>
+        <details data-reveal style="--d:3">
           <summary>Measurement scope</summary>
           <p>The target endpoint improved in all 8 rounds. Eleven other endpoints showed no systematic regression; occasional latency outliers remained. Peak memory comes from a bounded five-user test and includes profiling overhead. These numbers describe the experiments, not the whole production system.</p>
         </details>
       </div>
     </div>
-    <p class="caption">Stack: Go, MySQL, Kafka, gRPC, REST, Kubernetes.</p>
+
+    <div class="panels">
+      <figure class="panel" data-ui data-reveal style="--d:0">
+        <figcaption class="panel-bar">A/B run · order list</figcaption>
+        <dl class="panel-rows">
+          <div><dt>Rounds</dt><dd>8, interleaved</dd></div>
+          <div><dt>Calls</dt><dd>80 per version</dd></div>
+          <div><dt>Statistic</dt><dd>Median of round medians</dd></div>
+          <div><dt>Before</dt><dd>1,080 ms</dd></div>
+          <div><dt>After</dt><dd>482.5 ms</dd></div>
+          <div><dt>Change</dt><dd>−55.3%</dd></div>
+        </dl>
+      </figure>
+      <figure class="panel" data-ui data-reveal style="--d:1">
+        <figcaption class="panel-bar">Load test · memory</figcaption>
+        <dl class="panel-rows">
+          <div><dt>Users</dt><dd>5, bounded</dd></div>
+          <div><dt>Metric</dt><dd>Peak RSS</dd></div>
+          <div><dt>Change</dt><dd>−38%</dd></div>
+          <div><dt>Note</dt><dd>Includes profiling overhead</dd></div>
+        </dl>
+      </figure>
+      <figure class="panel" data-ui data-reveal style="--d:2">
+        <figcaption class="panel-bar">Regression check</figcaption>
+        <dl class="panel-rows">
+          <div><dt>Target endpoint</dt><dd>Better in 8 of 8 rounds</dd></div>
+          <div><dt>Other endpoints</dt><dd>11, no systematic regression</dd></div>
+          <div><dt>Outliers</dt><dd>Occasional, remained</dd></div>
+          <div><dt>Scope</dt><dd>The experiments, not all of production</dd></div>
+        </dl>
+      </figure>
+      <figure class="panel" data-ui data-reveal style="--d:3">
+        <figcaption class="panel-bar">OpenSearch removal</figcaption>
+        <dl class="panel-rows">
+          <div><dt>Reads</dt><dd>Moved to MySQL first</dd></div>
+          <div><dt>Projections</dt><dd>Search projections removed</dd></div>
+          <div><dt>Clients</dt><dd>Dependencies removed</dd></div>
+          <div><dt>Infrastructure</dt><dd>Decommissioned last</dd></div>
+          <div><dt>Rollback</dt><dd>Possible at each stage</dd></div>
+        </dl>
+      </figure>
+    </div>
+
+    <p class="stack-note">Stack: Go, MySQL, Kafka, gRPC, REST, Kubernetes.</p>
   </main>
 
-  <footer id="contact" class="contact wrap">
-    <div>
-      <h2>Let's talk.</h2>
-      <p class="muted">Jakarta · Open to remote work and relocation</p>
+  <footer id="contact" class="contact-chapter">
+    <div class="wrap">
+      <p class="contact-lead">Open to senior backend engineering, AI product roles, remote work and relocation.</p>
+      <a class="email-display" href="mailto:fadhelhasbullah.fh@gmail.com">fadhelhasbullah.fh@<wbr>gmail.com</a>
+      <div class="contact-bar">
+        <p class="contact-meta">Fadhel Hasbullah · Jakarta · Open to remote work and relocation</p>
+        <ul class="contact-links">
+          <li><a href="mailto:fadhelhasbullah.fh@gmail.com">Email</a></li>
+          <li><a href="https://linkedin.com/in/fadhel-hasbullah">LinkedIn</a></li>
+          <li><a href="https://github.com/Fadhelbulloh">GitHub</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1OdFvGomxROQ6NlV75QMc7W3Kh3DqMgvS">CV (Google Drive)</a></li>
+        </ul>
+      </div>
     </div>
-    <ul>
-      <li><a href="mailto:fadhelhasbullah.fh@gmail.com">Email</a></li>
-      <li><a href="https://linkedin.com/in/fadhel-hasbullah">LinkedIn</a></li>
-      <li><a href="https://github.com/Fadhelbulloh">GitHub</a></li>
-    </ul>
   </footer>
 </body>
 </html>
