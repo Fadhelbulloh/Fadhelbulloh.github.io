@@ -139,6 +139,7 @@ details > :not(summary) { margin-top: 12px; color: var(--muted); }
 .bar.after { background: var(--green); }
 .chart span { color: var(--muted); font-size: 14px; }
 .subhead { margin: 56px 0 20px; }
+.intro-note { max-width: 68ch; margin: -8px 0 20px; }
 .shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .shots a { display: block; background: var(--panel); }
 .shots img { aspect-ratio: 16 / 10; width: 100%; object-fit: cover; object-position: top; }

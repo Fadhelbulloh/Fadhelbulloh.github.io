@@ -113,7 +113,7 @@ await check('all local navigation works without JavaScript', async () => {
   }
 });
 await check('diagram wires: drawn inside graph at 3 widths, pause toggle, manual links still', async () => {
-  for (const [p, wires] of [['openxense.html', 4], ['automation.html', 9]]) {
+  for (const [p, wires] of [['openxense.html', 4], ['automation.html', 10]]) {
     await page.goto(url(p));
     for (const width of [1440, 768, 390]) {
       await page.setViewportSize({ width, height: 900 });

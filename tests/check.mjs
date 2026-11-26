@@ -57,7 +57,7 @@ const rule = (page, mustContain, mustNotContain = []) => check(`${page} content`
 
 rule('index.html', [
   'id="ai"', 'id="work"', 'id="contact"', ...PAGES.slice(1).map((p) => `href="${p}"`),
-  'https://github.com/Fadhelbulloh/opencode-delegate', 'https://github.com/decolua/9router', 'Hermes', 'n8n', 'OpenCode',
+  'https://github.com/Fadhelbulloh/opencode-delegate', 'https://github.com/decolua/9router', 'https://github.com/Fadhelbulloh/offerbound', 'Hermes', 'n8n', 'OpenCode',
   'mailto:fadhelhasbullah.fh@gmail.com', 'https://linkedin.com/in/fadhel-hasbullah', 'https://github.com/Fadhelbulloh',
   'Astro', 'Pelukdiri', 'Pertamina', 'eBdesk', /co-founder/i, 'Payment System',
 ], [/Payments\. Orders\. Rescued/]);
@@ -73,7 +73,8 @@ check('openxense.html screenshots link to full image', () => {
   const links = [...pages['openxense.html'].matchAll(/<a\b[^>]*href="(images\/[^"]+)"[^>]*>\s*<img\b[^>]*src="([^"]+)"/g)];
   assert.ok(links.length >= 3, `needs 3 linked screenshots, has ${links.length}`);
 });
-rule('automation.html', ['Hermes', 'PostgreSQL', 'n8n', 'Python', 'Threads', 'Telegram', 'Redis', /job pipeline/i, /manual/i, 'href="index.html#ai"'],
+rule('automation.html', ['Hermes', 'PostgreSQL', 'n8n', 'Python', 'Threads', 'Telegram', 'Redis', /job pipeline/i, 'href="index.html#ai"',
+  'href="https://github.com/Fadhelbulloh/offerbound"', 'href="https://pypi.org/project/offerbound/"', /review and send/i],
   [/auto(matically)?[- ]?(appl|submit)/i, /part of OpenXense/i]);
 rule('dbo.html', ['1,080', '482.5', /55\.3%/, /8 (interleaved )?rounds/, '80 calls', /38%/, /decommission/i, '<details', /not a production-wide/i, 'MySQL', 'OpenSearch'],
   [/35%/, /cost sav/i]);

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Automation ecosystem · Fadhel Hasbullah</title>
-  <meta name="description" content="Personal automation infrastructure built and operated by Fadhel Hasbullah: scheduled content publishing and a job pipeline, with Hermes, n8n, PostgreSQL and Telegram.">
+  <meta name="description" content="Personal automation infrastructure built and operated by Fadhel Hasbullah: scheduled content publishing with Hermes, n8n, PostgreSQL and Telegram, and offerbound, an open-source local job pipeline.">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preconnect" href="https://api.fontshare.com">
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
@@ -32,7 +32,7 @@
         <h1>Automation<br>ecosystem</h1>
         <p class="role">Personal infrastructure · Built &amp; operated</p>
       </div>
-      <p>Two systems I run on my own server: scheduled content publishing and a job pipeline. Both are personal projects, separate from OpenXense.</p>
+      <p>Two personal systems, separate from OpenXense: scheduled content publishing on my server, and offerbound, an open-source job pipeline that runs locally.</p>
     </div>
 
     <h2 class="subhead">Content publishing</h2>
@@ -65,23 +65,27 @@
       </div>
     </div>
 
-    <h2 class="subhead">Job pipeline</h2>
-    <figure class="graph" aria-label="Job pipeline flow" data-links="boards,rank;rank,digest;digest,profile,manual;profile,cv,manual">
+    <h2 class="subhead">offerbound · job pipeline</h2>
+    <p class="muted intro-note">Open source, MIT. A personal job portal that runs locally: fetches openings daily, scores each against your CV with your own LLM key, and checks Dutch and UK visa sponsor registers.</p>
+    <figure class="graph" aria-label="offerbound job pipeline flow" data-links="boards,store;store,rank;rank,digest;digest,profile,manual;profile,cv,manual">
       <div class="flow">
-        <div class="node" id="boards">Job boards</div>
+        <div class="node" id="boards">Job APIs<small>Boards + company pages</small></div>
         <span class="connector" aria-hidden="true">→</span>
-        <div class="node key" id="rank">Rank<small>Fit score</small></div>
+        <div class="node" id="store">SQLite<small>Dedupe · sponsor lists</small></div>
+        <span class="connector" aria-hidden="true">→</span>
+        <div class="node key" id="rank">Your LLM<small>Score 0–100 · evidence</small></div>
         <span class="connector" aria-hidden="true">→</span>
         <div class="node" id="digest">Digest<small>Web + Telegram</small></div>
       </div>
       <p class="down"><span class="connector" aria-hidden="true">↓</span> on demand</p>
       <div class="flow">
-        <div class="node" id="profile">My profile<small>Facts I keep</small></div>
+        <div class="node" id="profile">Your CV<small>Source of facts</small></div>
         <span class="connector" aria-hidden="true">→</span>
-        <div class="node" id="cv">CV draft<small>Manual review and send</small></div>
+        <div class="node" id="cv">CV + letter<small>You review and send</small></div>
       </div>
-      <figcaption class="caption">Drafts use only my profile. Nothing is sent automatically.</figcaption>
+      <figcaption class="caption">Python, local-first: data stays in your home folder. Nothing is sent for you.</figcaption>
     </figure>
+    <p><a class="textlink" href="https://github.com/Fadhelbulloh/offerbound">Source on GitHub ↗</a> · <a class="textlink" href="https://pypi.org/project/offerbound/">PyPI ↗</a></p>
   </main>
 
   <footer id="contact" class="contact wrap">
