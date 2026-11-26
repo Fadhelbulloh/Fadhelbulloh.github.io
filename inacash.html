@@ -3,86 +3,147 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#dfdedb">
   <title>INACASH payments · Fadhel Hasbullah</title>
   <meta name="description" content="INACASH fintech: payment services for QR-code payments, virtual accounts, e-money and bill payments. Case study by Fadhel Hasbullah.">
   <script>document.documentElement.classList.add('js')</script>
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/site.css">
   <script src="js/site.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site-head wrap">
-    <a class="brand" href="index.html">Fadhel Hasbullah</a>
-    <nav aria-label="Main">
-      <a href="openxense.html">OpenXense</a>
-      <a href="index.html#ai">AI practice</a>
-      <a href="index.html#work">Work</a>
-      <a href="#contact">Contact</a>
-    </nav>
+
+  <header class="site-head">
+    <div class="head-inner wrap">
+      <a class="brand" href="index.html" translate="no">Fadhel Hasbullah</a>
+      <nav aria-label="Main">
+        <a href="openxense.html" translate="no">OpenXense</a>
+        <a href="index.html#ai">AI practice</a>
+        <a href="index.html#work" aria-current="page">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <main id="main" class="wrap">
-    <a class="back" href="index.html#work">← Engineering experience</a>
+  <main id="main" class="wrap detail-main">
     <div class="detail-head">
-      <div>
-        <h1>INACASH</h1>
-        <p class="role">Backend Engineer · Fintech · 2023–2024</p>
+      <div data-rise style="--i:0">
+        <h1 translate="no">INACASH</h1>
+        <p class="role num">Backend Engineer · Fintech · 2023–2024</p>
+        <a class="back" href="index.html#work">← Engineering experience</a>
       </div>
-      <p>Payment services across five channels in production, where every transaction has to add up.</p>
+      <p data-rise style="--i:1">Payment services across five channels in production, where every transaction has to add up.</p>
     </div>
 
     <div class="results">
-      <div><strong>2 hours</strong><span>To restore a production Redis outage</span></div>
-      <div><strong>Zero data loss</strong><span>During that incident</span></div>
-      <div><strong>5 channels</strong><span>One module per channel</span></div>
+      <div data-reveal style="--d:0"><strong>2 hours</strong><span>To restore a production Redis outage</span></div>
+      <div data-reveal style="--d:1"><strong>Zero data loss</strong><span>During that incident</span></div>
+      <div data-reveal style="--d:2"><strong>5 channels</strong><span>One module per channel</span></div>
     </div>
 
-    <figure class="graph" aria-label="INACASH payment flow">
-      <p class="graph-label">Payment flow</p>
-      <div class="node">Channels<small>QR-code payments · virtual accounts · bill payments</small></div>
-      <p class="down" aria-hidden="true">↓ one module per channel</p>
-      <div class="node key">Go services<small>ACID transactions</small></div>
-      <p class="down" aria-hidden="true">↓</p>
-      <div class="flow">
-        <div class="node">PostgreSQL<small>Ledger</small></div>
-        <div class="node">Redis<small>Hot-path cache</small></div>
-        <div class="node">Google Pub/Sub<small>Events</small></div>
+    <figure class="graph" data-reveal style="--d:0" aria-label="INACASH payment flow" data-links="ina-channels,ina-core;ina-core,ina-pg;ina-core,ina-redis;ina-core,ina-pubsub">
+      <div class="graph-head">
+        <p class="graph-label">Payment flow · production runtime</p>
+      </div>
+      <div class="graph-canvas">
+        <div class="flow flow-1">
+          <div class="node" id="ina-channels">Channels<small>QR-code payments · virtual accounts · bill payments</small></div>
+        </div>
+        <p class="down"><span class="connector" aria-hidden="true">↓</span> one module per channel</p>
+        <div class="flow flow-1">
+          <div class="node key" id="ina-core">Go services<small>ACID transactions</small></div>
+        </div>
+        <p class="down"><span class="connector" aria-hidden="true">↓</span> ledger · cache · events</p>
+        <div class="flow">
+          <div class="node" id="ina-pg">PostgreSQL<small>Ledger</small></div>
+          <div class="node" id="ina-redis">Redis<small>Hot-path cache</small></div>
+          <div class="node" id="ina-pubsub">Google Pub/Sub<small>Events</small></div>
+        </div>
+      </div>
+      <div class="graph-bar">
+        <div class="graph-legend">
+          <span class="leg-auto">Automated · live payment flow</span>
+        </div>
       </div>
     </figure>
 
-    <div class="detail-grid section">
-      <div class="decision">
+    <div class="detail-grid">
+      <div class="decision" data-reveal style="--d:0">
         <h3>Incident recovery</h3>
         <p>A production Redis outage hit partner integrations. I restored service within 2 hours with zero data loss.</p>
       </div>
       <div>
-        <div class="decision">
+        <div class="decision" data-reveal style="--d:1">
           <h3>Consistency</h3>
           <p>High-availability services with strict ACID guarantees on transaction data.</p>
         </div>
-        <div class="decision">
+        <div class="decision" data-reveal style="--d:2">
           <h3>Latency</h3>
           <p>A Redis caching layer on the high-frequency transaction pipelines.</p>
         </div>
       </div>
     </div>
-    <p class="caption">Stack: Go, PostgreSQL, Redis, Google Pub/Sub, Docker, GCP.</p>
+
+    <div class="panels">
+      <figure class="panel" data-ui data-reveal style="--d:0">
+        <figcaption class="panel-bar">Incident · Redis outage</figcaption>
+        <dl class="panel-rows">
+          <div><dt>Where</dt><dd>Production</dd></div>
+          <div><dt>Impact</dt><dd>Partner integrations</dd></div>
+          <div><dt>Restored in</dt><dd>2 hours</dd></div>
+          <div><dt>Data loss</dt><dd>Zero</dd></div>
+        </dl>
+      </figure>
+      <figure class="panel" data-ui data-reveal style="--d:1">
+        <figcaption class="panel-bar">Channels</figcaption>
+        <dl class="panel-rows">
+          <div><dt>Live</dt><dd>5 channels</dd></div>
+          <div><dt>Structure</dt><dd>One module per channel</dd></div>
+          <div><dt>QR-code</dt><dd>Payments</dd></div>
+          <div><dt>Virtual accounts</dt><dd>Payments</dd></div>
+          <div><dt>Bills</dt><dd>Payments</dd></div>
+        </dl>
+      </figure>
+      <figure class="panel" data-ui data-reveal style="--d:2">
+        <figcaption class="panel-bar">Transaction guarantees</figcaption>
+        <dl class="panel-rows">
+          <div><dt>Ledger</dt><dd>PostgreSQL</dd></div>
+          <div><dt>Consistency</dt><dd>Strict ACID</dd></div>
+          <div><dt>Services</dt><dd>High availability</dd></div>
+        </dl>
+      </figure>
+      <figure class="panel" data-ui data-reveal style="--d:3">
+        <figcaption class="panel-bar">Hot path</figcaption>
+        <dl class="panel-rows">
+          <div><dt>Cache</dt><dd>Redis</dd></div>
+          <div><dt>Used on</dt><dd>High-frequency transaction pipelines</dd></div>
+          <div><dt>Events</dt><dd>Google Pub/Sub</dd></div>
+          <div><dt>Runtime</dt><dd>Docker · GCP</dd></div>
+        </dl>
+      </figure>
+    </div>
+
+    <p class="stack-note">Stack: Go, PostgreSQL, Redis, Google Pub/Sub, Docker, GCP.</p>
   </main>
 
-  <footer id="contact" class="contact wrap">
-    <div>
-      <h2>Let's talk.</h2>
-      <p class="muted">Jakarta · Open to remote work and relocation</p>
+  <footer id="contact" class="contact-chapter">
+    <div class="wrap">
+      <p class="contact-lead">Open to senior backend engineering, AI product roles, remote work and relocation.</p>
+      <a class="email-display" href="mailto:fadhelhasbullah.fh@gmail.com">fadhelhasbullah.fh@<wbr>gmail.com</a>
+      <div class="contact-bar">
+        <p class="contact-meta">Fadhel Hasbullah · Jakarta · Open to remote work and relocation</p>
+        <ul class="contact-links">
+          <li><a href="mailto:fadhelhasbullah.fh@gmail.com">Email</a></li>
+          <li><a href="https://linkedin.com/in/fadhel-hasbullah">LinkedIn</a></li>
+          <li><a href="https://github.com/Fadhelbulloh">GitHub</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1OdFvGomxROQ6NlV75QMc7W3Kh3DqMgvS">CV (Google Drive)</a></li>
+        </ul>
+      </div>
     </div>
-    <ul>
-      <li><a href="mailto:fadhelhasbullah.fh@gmail.com">Email</a></li>
-      <li><a href="https://linkedin.com/in/fadhel-hasbullah">LinkedIn</a></li>
-      <li><a href="https://github.com/Fadhelbulloh">GitHub</a></li>
-    </ul>
   </footer>
 </body>
 </html>

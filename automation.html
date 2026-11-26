@@ -3,101 +3,179 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#dfdedb">
   <title>Automation ecosystem · Fadhel Hasbullah</title>
   <meta name="description" content="Personal automation infrastructure built and operated by Fadhel Hasbullah: scheduled content publishing with Hermes, n8n, PostgreSQL and Telegram, and offerbound, an open-source local job pipeline.">
   <script>document.documentElement.classList.add('js')</script>
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/site.css">
   <script src="js/site.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site-head wrap">
-    <a class="brand" href="index.html">Fadhel Hasbullah</a>
-    <nav aria-label="Main">
-      <a href="openxense.html">OpenXense</a>
-      <a href="index.html#ai">AI practice</a>
-      <a href="index.html#work">Work</a>
-      <a href="#contact">Contact</a>
-    </nav>
+
+  <header class="site-head">
+    <div class="head-inner wrap">
+      <a class="brand" href="index.html" translate="no">Fadhel Hasbullah</a>
+      <nav aria-label="Main">
+        <a href="openxense.html" translate="no">OpenXense</a>
+        <a href="index.html#ai" aria-current="page">AI practice</a>
+        <a href="index.html#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <main id="main" class="wrap">
-    <a class="back" href="index.html#ai">← AI practice</a>
+  <main id="main" class="wrap detail-main">
     <div class="detail-head">
-      <div>
+      <div data-rise style="--i:0">
         <h1>Automation<br>ecosystem</h1>
         <p class="role">Personal infrastructure · Built &amp; operated</p>
+        <a class="back" href="index.html#ai">← AI practice</a>
       </div>
-      <p>Two personal systems, separate from OpenXense: scheduled content publishing on my server, and offerbound, an open-source job pipeline that runs locally.</p>
+      <p data-rise style="--i:1">Two personal systems, separate from OpenXense: scheduled content publishing on my server, and offerbound, an open-source job pipeline that runs locally.</p>
     </div>
 
-    <h2 class="subhead">Content publishing</h2>
-    <figure class="graph" aria-label="Content publishing flow" data-links="hermes,queue;queue,n8n;n8n,python;python,threads;threads,telegram">
-      <div class="flow">
-        <div class="node" id="hermes">Hermes<small>Writes content</small></div>
-        <span class="connector" aria-hidden="true">→</span>
-        <div class="node key" id="queue">PostgreSQL<small>Content queue</small></div>
+    <h2 class="subhead" data-reveal style="--d:0">Content publishing</h2>
+    <figure class="graph" data-reveal style="--d:1" aria-label="Content publishing flow" data-links="hermes,queue;queue,n8n;n8n,python;python,threads;threads,telegram">
+      <div class="graph-head">
+        <p class="graph-label">Scheduled pipeline · server runtime</p>
       </div>
-      <p class="down"><span class="connector" aria-hidden="true">↓</span> cron</p>
-      <div class="flow">
-        <div class="node" id="n8n">n8n<small>Workflow</small></div>
-        <span class="connector" aria-hidden="true">→</span>
-        <div class="node" id="python">Python<small>Publisher</small></div>
-        <span class="connector" aria-hidden="true">→</span>
-        <div class="node" id="threads">Threads<small>Two accounts</small></div>
-        <span class="connector" aria-hidden="true">→</span>
-        <div class="node" id="telegram">Telegram<small>Alerts</small></div>
+      <div class="graph-canvas">
+        <div class="flow flow-2">
+          <div class="node" id="hermes">Hermes<small>Writes content</small></div>
+          <span class="connector" aria-hidden="true">→</span>
+          <div class="node key" id="queue">PostgreSQL<small>Content queue</small></div>
+        </div>
+        <p class="down"><span class="connector" aria-hidden="true">↓</span> cron schedule</p>
+        <div class="flow">
+          <div class="node" id="n8n">n8n<small>Workflow</small></div>
+          <span class="connector" aria-hidden="true">→</span>
+          <div class="node" id="python">Python<small>Publisher</small></div>
+          <span class="connector" aria-hidden="true">→</span>
+          <div class="node" id="threads">Threads<small>Two accounts</small></div>
+          <span class="connector" aria-hidden="true">→</span>
+          <div class="node" id="telegram">Telegram<small>Alerts</small></div>
+        </div>
+      </div>
+      <div class="graph-bar">
+        <div class="graph-legend">
+          <span class="leg-auto">Automated · cron schedule</span>
+        </div>
       </div>
     </figure>
 
-    <div class="detail-grid section">
-      <div class="decision">
+    <div class="detail-grid">
+      <div class="decision" data-reveal style="--d:0">
         <h3>Supporting services</h3>
         <p>Docker Compose runs n8n, PostgreSQL and Redis. Redis handles queue and lock coordination; nginx fronts webhook traffic.</p>
       </div>
-      <div class="decision">
+      <div class="decision" data-reveal style="--d:1">
         <h3>Scheduled operations</h3>
         <p>Hermes jobs refresh tokens, back up the database, run health checks and send engagement reports. Alerts arrive in Telegram.</p>
       </div>
     </div>
 
-    <h2 class="subhead">offerbound · job pipeline</h2>
-    <p class="muted intro-note">Open source, MIT. A personal job portal that runs locally: fetches openings daily, scores each against your CV with your own LLM key, and checks Dutch and UK visa sponsor registers.</p>
-    <figure class="graph" aria-label="offerbound job pipeline flow" data-links="boards,store;store,rank;rank,digest;digest,profile,manual;profile,cv,manual">
-      <div class="flow">
-        <div class="node" id="boards">Job APIs<small>Boards + company pages</small></div>
-        <span class="connector" aria-hidden="true">→</span>
-        <div class="node" id="store">SQLite<small>Dedupe · sponsor lists</small></div>
-        <span class="connector" aria-hidden="true">→</span>
-        <div class="node key" id="rank">Your LLM<small>Score 0–100 · evidence</small></div>
-        <span class="connector" aria-hidden="true">→</span>
-        <div class="node" id="digest">Digest<small>Web + Telegram</small></div>
+    <div class="panels">
+      <figure class="panel" data-ui data-reveal style="--d:0">
+        <figcaption class="panel-bar">Docker Compose · services</figcaption>
+        <dl class="panel-rows">
+          <div><dt>n8n</dt><dd>Workflow</dd></div>
+          <div><dt>PostgreSQL</dt><dd>Content queue</dd></div>
+          <div><dt>Redis</dt><dd>Queue + lock coordination</dd></div>
+          <div><dt>nginx</dt><dd>Webhook traffic</dd></div>
+        </dl>
+      </figure>
+      <figure class="panel" data-ui data-reveal style="--d:1">
+        <figcaption class="panel-bar">Hermes · scheduled jobs</figcaption>
+        <dl class="panel-rows">
+          <div><dt>Tokens</dt><dd>Refresh</dd></div>
+          <div><dt>Database</dt><dd>Back up</dd></div>
+          <div><dt>Health</dt><dd>Check</dd></div>
+          <div><dt>Engagement</dt><dd>Report</dd></div>
+          <div><dt>Alerts</dt><dd>Telegram</dd></div>
+        </dl>
+      </figure>
+    </div>
+
+    <h2 class="subhead" data-reveal style="--d:0">offerbound · job pipeline</h2>
+    <p class="intro-note" data-reveal style="--d:1">Open source, MIT. A personal job portal that runs locally: fetches openings daily, scores each against your CV with your own LLM key, and checks Dutch and UK visa sponsor registers.</p>
+
+    <figure class="graph" data-reveal style="--d:2" aria-label="offerbound job pipeline flow" data-links="boards,store;store,rank;rank,digest;digest,profile,manual;profile,cv,manual">
+      <div class="graph-head">
+        <p class="graph-label">Local pipeline · automated daily digest vs manual application</p>
       </div>
-      <p class="down"><span class="connector" aria-hidden="true">↓</span> on demand</p>
-      <div class="flow">
-        <div class="node" id="profile">Your CV<small>Source of facts</small></div>
-        <span class="connector" aria-hidden="true">→</span>
-        <div class="node" id="cv">CV + letter<small>You review and send</small></div>
+      <div class="graph-canvas">
+        <div class="flow">
+          <div class="node" id="boards">Job APIs<small>Boards + company pages</small></div>
+          <span class="connector" aria-hidden="true">→</span>
+          <div class="node" id="store">SQLite<small>Dedupe · sponsor lists</small></div>
+          <span class="connector" aria-hidden="true">→</span>
+          <div class="node key" id="rank">Your LLM<small>Score 0–100 · evidence</small></div>
+          <span class="connector" aria-hidden="true">→</span>
+          <div class="node" id="digest">Digest<small>Web + Telegram</small></div>
+        </div>
+        <p class="down manual-tag"><span class="connector" aria-hidden="true">↓</span> Manual · on demand</p>
+        <div class="flow flow-manual">
+          <div class="node manual" id="profile">Your CV<small>Source of facts</small></div>
+          <span class="connector" aria-hidden="true">→</span>
+          <div class="node manual" id="cv">CV + letter<small>You review and send</small></div>
+        </div>
+      </div>
+      <div class="graph-bar">
+        <div class="graph-legend">
+          <span class="leg-auto">Automated · daily schedule</span>
+          <span class="leg-manual">Manual · on demand (static)</span>
+        </div>
       </div>
       <figcaption class="caption">Python, local-first: data stays in your home folder. Nothing is sent for you.</figcaption>
     </figure>
-    <p><a class="textlink" href="https://github.com/Fadhelbulloh/offerbound">Source on GitHub ↗</a> · <a class="textlink" href="https://pypi.org/project/offerbound/">PyPI ↗</a></p>
+
+    <div class="panels">
+      <figure class="panel" data-ui data-reveal style="--d:0">
+        <figcaption class="panel-bar">Install · shell</figcaption>
+        <dl class="panel-rows">
+          <div><dt>$</dt><dd>pipx install offerbound</dd></div>
+          <div><dt>$</dt><dd>offerbound</dd></div>
+          <div><dt>Runs</dt><dd>Locally, loopback only</dd></div>
+          <div><dt>Licence</dt><dd>MIT</dd></div>
+        </dl>
+      </figure>
+      <figure class="panel" data-ui data-reveal style="--d:1">
+        <figcaption class="panel-bar">Daily digest</figcaption>
+        <dl class="panel-rows">
+          <div><dt>Sources</dt><dd>Job APIs + company pages</dd></div>
+          <div><dt>Store</dt><dd>SQLite, deduplicated</dd></div>
+          <div><dt>Score</dt><dd>0–100 with evidence, your LLM key</dd></div>
+          <div><dt>Sponsors</dt><dd>Dutch + UK registers</dd></div>
+          <div><dt>Delivery</dt><dd>Web + Telegram</dd></div>
+        </dl>
+      </figure>
+    </div>
+
+    <p class="ox-links" data-reveal style="--d:3">
+      <a class="textlink" href="https://github.com/Fadhelbulloh/offerbound">Source on GitHub ↗</a>
+      <a class="textlink" href="https://pypi.org/project/offerbound/">PyPI ↗</a>
+    </p>
   </main>
 
-  <footer id="contact" class="contact wrap">
-    <div>
-      <h2>Let's talk.</h2>
-      <p class="muted">Jakarta · Open to remote work and relocation</p>
+  <footer id="contact" class="contact-chapter">
+    <div class="wrap">
+      <p class="contact-lead">Open to senior backend engineering, AI product roles, remote work and relocation.</p>
+      <a class="email-display" href="mailto:fadhelhasbullah.fh@gmail.com">fadhelhasbullah.fh@<wbr>gmail.com</a>
+      <div class="contact-bar">
+        <p class="contact-meta">Fadhel Hasbullah · Jakarta · Open to remote work and relocation</p>
+        <ul class="contact-links">
+          <li><a href="mailto:fadhelhasbullah.fh@gmail.com">Email</a></li>
+          <li><a href="https://linkedin.com/in/fadhel-hasbullah">LinkedIn</a></li>
+          <li><a href="https://github.com/Fadhelbulloh">GitHub</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1OdFvGomxROQ6NlV75QMc7W3Kh3DqMgvS">CV (Google Drive)</a></li>
+        </ul>
+      </div>
     </div>
-    <ul>
-      <li><a href="mailto:fadhelhasbullah.fh@gmail.com">Email</a></li>
-      <li><a href="https://linkedin.com/in/fadhel-hasbullah">LinkedIn</a></li>
-      <li><a href="https://github.com/Fadhelbulloh">GitHub</a></li>
-    </ul>
   </footer>
 </body>
 </html>

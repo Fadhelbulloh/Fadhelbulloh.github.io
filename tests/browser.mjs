@@ -112,8 +112,15 @@ await check('all local navigation works without JavaScript', async () => {
     }
   }
 });
-await check('diagram wires: drawn inside graph at 3 widths, pause toggle, manual links still', async () => {
-  for (const [p, wires] of [['openxense.html', 4], ['automation.html', 10]]) {
+await check('diagram wires: drawn inside graph at 3 widths, pause toggle, manual/retired links still', async () => {
+  for (const [p, wires, manual, retired] of [
+    ['index.html', 3, 0, 0],
+    ['openxense.html', 4, 0, 0],
+    ['automation.html', 10, 2, 0],
+    ['dbo.html', 4, 0, 1],
+    ['payment-system.html', 4, 1, 0],
+    ['inacash.html', 4, 0, 0],
+  ]) {
     await page.goto(url(p));
     for (const width of [1440, 768, 390]) {
       await page.setViewportSize({ width, height: 900 });
@@ -124,13 +131,15 @@ await check('diagram wires: drawn inside graph at 3 widths, pause toggle, manual
         return [...g.querySelectorAll('.wire')].some((w) => { const b = w.getBoundingClientRect(); return b.left < r.left - 1 || b.right > r.right + 1 || b.top < r.top - 1 || b.bottom > r.bottom + 1; });
       })), `${p}@${width} wire outside graph`);
     }
+    assert.equal(await page.locator('.wire.manual').count(), manual, `${p} manual wires`);
+    assert.equal(await page.locator('.wire.retired').count(), retired, `${p} retired wires`);
+    assert.equal(await page.locator('.wire.manual + .wire-cap + .pulse, .wire.manual + .pulse').count(), 0, `${p} manual must not pulse`);
+    assert.equal(await page.locator('.wire.retired + .wire-cap + .pulse, .wire.retired + .pulse').count(), 0, `${p} retired must not pulse`);
+    const toggle = page.locator('.wire-toggle').first();
+    await toggle.click();
+    assert.equal(await page.$eval('.graph .pulse', (e) => getComputedStyle(e).animationPlayState), 'paused', `${p} pause toggle`);
+    assert.equal(await toggle.getAttribute('aria-pressed'), 'true', `${p} aria-pressed`);
   }
-  assert.equal(await page.locator('.wire.manual').count(), 2);
-  assert.equal(await page.locator('.wire.manual + .pulse').count(), 0);
-  const toggle = page.locator('.wire-toggle').first();
-  await toggle.click();
-  assert.equal(await page.$eval('.graph .pulse', (e) => getComputedStyle(e).animationPlayState), 'paused');
-  assert.equal(await toggle.getAttribute('aria-pressed'), 'true');
 });
 await check('modified click on a screenshot is not intercepted', async () => {
   await page.goto(url('openxense.html'));
